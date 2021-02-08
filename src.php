@@ -61,7 +61,11 @@
 		// Inserts a picture into the original image.
 		// Accepts a link to the inserted photo, position X, position Y, offset X, offset Y 
 		function insertImage($photo, $x = 0, $y = 0, $xS = 0, $yS = 0) {
-			$p = ImageCreateFromJPEG($photo);
+			if(is_object($photo)) {
+				$p = $photo->image;
+			} else {
+				$p = ImageCreateFromJPEG($photo);
+			}
 			imagecopy($this->image, $p, $x,  $y, $xS, $yS, imagesx($p), imagesy($p));
 		}
 		
