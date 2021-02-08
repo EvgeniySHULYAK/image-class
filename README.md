@@ -17,12 +17,6 @@ Warning! If the text is not displayed in the picture, then change the path to th
 $img->addText($name, "center", 15, "font.ttf", $img->getColor(0, 0, 0), 100, 10, 15, 50);
 ```
 
-Insert another image into the image. A link to the inserted image and positions by X in Y is passed.
-
-```php
-$img->insertImage("avatar.jpg", 13, 30);
-```
-
 Resize the image. Accepts new width and height.
 
 ```php
@@ -40,6 +34,21 @@ Get image width/height.
 ```php
 $img->getWidth();
 $img->getHeight();
+```
+
+Insert another image into the image. A link to the inserted image and positions by X in Y is passed.
+
+```php
+$img->insertImage("avatar.jpg", 13, 30);
+```
+
+Also, if you suddenly need to change the dimensions of the inserted image, for example, then you must create a new instance of the class from the inserted image, then change the dimensions and transfer the entire object.
+
+
+```php
+$avatar = new IMGcore("avatar.jpg");
+$avatar->resize(50, 50);
+$img->insertImage($avatar, 13, 30);
 ```
 
 Save the image. Accepts link to save and quality from 1 to 100.
